@@ -82,6 +82,8 @@ jobs:
 
   # Deployment job
   deploy:
+    env:
+      NEXT_PUBLIC_TWITCASTING_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TWITCASTING_CLIENT_ID }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
