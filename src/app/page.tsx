@@ -115,7 +115,7 @@ export default function Home() {
                       リアルタイムにギフト通知を受け取るため、ツイキャスと連携してアクセストークンを取得します。
                   </p>
                   <a
-                    href="https://apiv2.twitcasting.tv/oauth2/authorize?client_id=cmizudori_pelican.47d793a262158ec742c36dfd277093c608c000a507b89f55bf689cab1a76fd0a&response_type=token"
+                    href={`https://apiv2.twitcasting.tv/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_TWITCASTING_CLIENT_ID}&response_type=token`}
                     className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg"
                   >
                     ツイキャスで連携する <ExternalLink size={16} />
