@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TeaAlert (ツイキャス用ギフト通知オーバーレイ)
 
-## Getting Started
+OBSなどの配信ソフトで利用できる、ツイキャス専用のリアルタイムギフト通知オーバーレイWebアプリケーションです。Next.jsで構築されており、リッチなUIとアニメーションで配信画面を彩ります。
 
-First, run the development server:
+## ✨ 特徴
+
+- **Twitcasting API v2 対応**: 公式APIを利用した安定したギフト取得 (5秒間隔でポーリング)
+- **高品質なアニメーション**: `framer-motion` による滑らかでリッチなポップアップ表示
+- **直感的なセットアップ**: ブラウザ上でアクセストークンを取得し、すぐにOBSのブラウザソース用URLを生成
+- **テスト用ダミー機能**: 配信前であってもボタン一つでオーバーレイの動作確認が可能
+
+## 🚀 使い方 (ローカル環境)
+
+### 1. インストール
+当リポジトリをクローン後、依存関係をインストールします。
+
+```bash
+npm install
+# または yarn install / pnpm install / bun install
+```
+
+### 2. 環境変数の設定
+プロジェクトルートに `.env.local` ファイルを作成し、ツイキャスの開発者ポータルで取得したクライアントIDを設定します。
+
+```env
+NEXT_PUBLIC_TWITCASTING_CLIENT_ID="あなたのクライアントID"
+```
+
+### 3. 起動
+開発サーバーを起動します。
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) にアクセスしてください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ セットアップ & OBS連携手順
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **トークンの取得**: トップ画面の案内に従って「ツイキャスで連携する」ボタンをクリックし、アクセストークンを取得します。
+2. **配信者IDの入力**: ギフト通知を取得したい配信者の `screen_id`（例: `c:your_id`）を入力して設定を保存します。
+3. **OBSへの追加**: 
+   - OBSで新しい「ブラウザソース」を追加します。
+   - URLに `http://localhost:3000/alert`（またはデプロイ先の `/alert` URL）を設定します。
+   - 設定サイズは 幅: `1920`、高さ: `1080` 等をご自身の配信解像度に合わせて指定してください。
+   - デフォルトのカスタムCSS `body { background-color: rgba(0, 0, 0, 0); }` はそのまま残し、背景を透過させます。
+4. **動作テスト**: トップページの「ダミー通知を送信」ボタンをクリックし、OBS上に通知ポップアップが正常に表示されるか確認できます。
 
-## Learn More
+## 🛠️ 技術スタック
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS v4
+- framer-motion (アニメーション)
+- lucide-react (アイコン)
