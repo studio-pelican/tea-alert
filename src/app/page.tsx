@@ -58,7 +58,7 @@ export default function Home() {
     const dummyEvent = {
       id: `dummy-${Date.now()}`,
       message: "モイ！",
-      item_image: "https://twitcasting.tv/img/item/tea.png",
+      item_image: "https://twitcasting.tv/img/item_tea.png",
       item_name: "お茶",
       item_mp: 10,
       user_name: "テストユーザー",
